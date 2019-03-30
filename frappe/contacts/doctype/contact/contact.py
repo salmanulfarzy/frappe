@@ -22,11 +22,6 @@ class Contact(Document):
 		if frappe.db.exists("Contact", self.name):
 			self.name = append_number_if_name_exists('Contact', self.name)
 
-		# concat party name if reqd
-		for link in self.links:
-			self.name = self.name + '-' + link.link_name.strip()
-			break
-
 	def validate(self):
 		if self.email_id:
 			self.email_id = self.email_id.strip()
